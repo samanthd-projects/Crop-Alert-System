@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "springboot-backend-collection",
+		"name": "Spring Boot Backend - Crop Monitoring System",
+		"description": "Complete API collection for Spring Boot backend services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Farmer Service",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"password123\",\n  \"location\": \"bangalore\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/farmer/signup",
+							"host": ["{{baseUrl}}"],
+							"path": ["farmer", "signup"]
+						},
+						"description": "Register a new farmer account"
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/farmer/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["farmer", "login"]
+						},
+						"description": "Login with email and password"
+					}
+				},
+				{
+					"name": "Get Farmer by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/farmer/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["farmer", "1"]
+						},
+						"description": "Get farmer details by ID (requires JWT token)"
+					}
+				},
+				{
+					"name": "Update Farmer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe Updated\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"password123\",\n  \"location\": \"mumbai\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/farmer/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["farmer", "1"]
+						},
+						"description": "Update farmer information"
+					}
+				}
+			]
+		},
+		{
+			"name": "Crop Service",
+			"item": [
+				{
+					"name": "Add Crop",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cropName\": \"Tomato\",\n  \"season\": \"Kharif\",\n  \"minTemp\": 15.0,\n  \"maxTemp\": 35.0,\n  \"minRain\": 50.0,\n  \"maxRain\": 150.0,\n  \"minWind\": 5.0,\n  \"maxWind\": 30.0,\n  \"emailEnabled\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/crops?farmerId=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["crops"],
+							"query": [
+								{
+									"key": "farmerId",
+									"value": "1",
+									"description": "Farmer ID"
+								}
+							]
+						},
+						"description": "Add a new crop for a farmer"
+					}
+				},
+				{
+					"name": "Get Crops by Farmer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/crops/farmer/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["crops", "farmer", "1"]
+						},
+						"description": "Get all crops for a specific farmer (requires JWT token)"
+					}
+				},
+				{
+					"name": "Get Crop by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/crops/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["crops", "1"]
+						},
+						"description": "Get crop details by ID (requires JWT token)"
+					}
+				},
+				{
+					"name": "Update Crop",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cropName\": \"Tomato\",\n  \"season\": \"Kharif\",\n  \"minTemp\": 15.0,\n  \"maxTemp\": 40.0,\n  \"minRain\": 50.0,\n  \"maxRain\": 150.0,\n  \"minWind\": 5.0,\n  \"maxWind\": 30.0,\n  \"emailEnabled\": false\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/crops/1?farmerId=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["crops", "1"],
+							"query": [
+								{
+									"key": "farmerId",
+									"value": "1",
+									"description": "Farmer ID"
+								}
+							]
+						},
+						"description": "Update crop information"
+					}
+				},
+				{
+					"name": "Delete Crop",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/crops/1?farmerId=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["crops", "1"],
+							"query": [
+								{
+									"key": "farmerId",
+									"value": "1",
+									"description": "Farmer ID"
+								}
+							]
+						},
+						"description": "Delete a crop (requires JWT token)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Weather Service",
+			"item": [
+				{
+					"name": "Get Current Weather",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weather/bangalore",
+							"host": ["{{baseUrl}}"],
+							"path": ["weather", "bangalore"]
+						},
+						"description": "Fetches current weather and checks crop rules for alerts"
+					}
+				},
+				{
+					"name": "Get Weather - Mumbai",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weather/mumbai",
+							"host": ["{{baseUrl}}"],
+							"path": ["weather", "mumbai"]
+						}
+					}
+				},
+				{
+					"name": "Get Weather - Delhi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weather/delhi",
+							"host": ["{{baseUrl}}"],
+							"path": ["weather", "delhi"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Alert Service",
+			"item": [
+				{
+					"name": "Get Alerts by Farmer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/farmer/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["alerts", "farmer", "1"]
+						},
+						"description": "Get all alerts for a specific farmer"
+					}
+				},
+				{
+					"name": "Get Recent Alerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/farmer/1/recent?days=7",
+							"host": ["{{baseUrl}}"],
+							"path": ["alerts", "farmer", "1", "recent"],
+							"query": [
+								{
+									"key": "days",
+									"value": "7",
+									"description": "Number of days (default: 7)"
+								}
+							]
+						},
+						"description": "Get recent alerts for a farmer within specified days"
+					}
+				},
+				{
+					"name": "Get Alerts by Crop",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alerts/crop/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["alerts", "crop", "1"]
+						},
+						"description": "Get all alerts for a specific crop"
+					}
+				}
+			]
+		},
+		{
+			"name": "Notification Service",
+			"item": [
+				{
+					"name": "Get All Notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/notifications",
+							"host": ["{{baseUrl}}"],
+							"path": ["notifications"]
+						},
+						"description": "Get all notification logs"
+					}
+				},
+				{
+					"name": "Get Notifications by Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/notifications/event/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["notifications", "event", "1"]
+						},
+						"description": "Get notifications for a specific alert event"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string",
+			"description": "JWT token from login response. Copy from login response and paste here."
+		}
+	]
+}

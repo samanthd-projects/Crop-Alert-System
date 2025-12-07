@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "go-weather-service-collection",
+		"name": "Go Weather Service",
+		"description": "API collection for Go weather service backend (Port 8081)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Current Weather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/weather/current?location=bangalore",
+					"host": ["{{baseUrl}}"],
+					"path": ["weather", "current"],
+					"query": [
+						{
+							"key": "location",
+							"value": "bangalore",
+							"description": "City name (e.g., bangalore, mumbai, delhi, chennai)"
+						}
+					]
+				},
+				"description": "Fetches current weather data for a location from OpenWeatherMap API"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Weather History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/weather/history?location=bangalore",
+					"host": ["{{baseUrl}}"],
+					"path": ["weather", "history"],
+					"query": [
+						{
+							"key": "location",
+							"value": "bangalore",
+							"description": "City name (e.g., bangalore, mumbai, delhi, chennai)"
+						}
+					]
+				},
+				"description": "Fetches weather history (last 7 days) for a location using forecast data"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Current Weather - Mumbai",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/weather/current?location=mumbai",
+					"host": ["{{baseUrl}}"],
+					"path": ["weather", "current"],
+					"query": [
+						{
+							"key": "location",
+							"value": "mumbai"
+						}
+					]
+				},
+				"description": "Get current weather for Mumbai"
+			}
+		},
+		{
+			"name": "Get Current Weather - Delhi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/weather/current?location=delhi",
+					"host": ["{{baseUrl}}"],
+					"path": ["weather", "current"],
+					"query": [
+						{
+							"key": "location",
+							"value": "delhi"
+						}
+					]
+				},
+				"description": "Get current weather for Delhi"
+			}
+		},
+		{
+			"name": "Get Current Weather - Chennai",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/weather/current?location=chennai",
+					"host": ["{{baseUrl}}"],
+					"path": ["weather", "current"],
+					"query": [
+						{
+							"key": "location",
+							"value": "chennai"
+						}
+					]
+				},
+				"description": "Get current weather for Chennai"
+			}
+		},
+		{
+			"name": "Get Weather History - Mumbai",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/weather/history?location=mumbai",
+					"host": ["{{baseUrl}}"],
+					"path": ["weather", "history"],
+					"query": [
+						{
+							"key": "location",
+							"value": "mumbai"
+						}
+					]
+				},
+				"description": "Get weather history for Mumbai"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}
